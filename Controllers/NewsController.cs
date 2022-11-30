@@ -16,7 +16,7 @@ public class NewsController : ControllerBase
     public ActionResult<List<News>> GetAll() =>
         NewsService.GetAll();
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public ActionResult<News> Get(int id)
     {
         var news = NewsService.Get(id);
@@ -26,10 +26,15 @@ public class NewsController : ControllerBase
 
         return news;
     }
+    
+    [HttpGet("find/{term}")]
+    public ActionResult<News> Get(string term)
+    {
+        var news = NewsService.Search(term);
 
-    // POST action
+        if(news == null)
+            return NotFound();
 
-    // PUT action
-
-    // DELETE action
+        return news;
+    }
 }

@@ -37,7 +37,18 @@ public static class NewsService
 
     public static List<News> GetAll() => News;
 
-    public static News? Get(int id) => News.FirstOrDefault(news => news.Id == id);
+    public static News? Get(int id) => 
+    News.FirstOrDefault(news => news.Id == id);
+
+    public static News? Search(string term) => 
+    News.FirstOrDefault(news => 
+    {
+        var normalizedTitle = (news.Title ?? "").ToLower();
+        var normalizedTerm = term.ToString().ToLower() ?? "";
+
+        return normalizedTitle.Contains(normalizedTerm);
+    });
+
 
     public static void Add(News news)
     {
