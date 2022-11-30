@@ -1,4 +1,4 @@
-namespace landcareresearch;
+namespace LandcareResearch;
 
 public class WeatherForecast
 {

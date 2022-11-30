@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace landcareresearch.Controllers;
+namespace LandcareResearch.Controllers;
 
 [ApiController]
 [Route("[controller]")]
