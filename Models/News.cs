@@ -1,6 +1,6 @@
 namespace LandcareResearch.Models;
 
-public class Article
+public class News
 {
     [field:NonSerialized]
     public int? Id { get; set; }
@@ -15,9 +15,17 @@ public class Article
 
     public string? PublishedAt { get; set; }
 
-    public class Source 
+    public Source? Source { get; set; }
+}
+
+public class Source : News
+{
+    public Source(string name, string url)
     {
-        public string? Name { get; set; }
-        public string? Url { get; set; }
+        Name = name;
+        SourceUrl = url;
     }
+    public string? Name { get; set; }
+    public string? SourceUrl { get; set; }
+
 }
