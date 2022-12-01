@@ -22,4 +22,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.Run(Environment.GetEnvironmentVariable("BACKEND_DEV_URL"));

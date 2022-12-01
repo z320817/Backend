@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  webapi:
+    image: webapi:latest
+    build: .
+    env_file:
+      - .env
+    container_name: webapi
+    environment:
+      - BACKEND_DEV_URL=${BACKEND_DEV_URL}
+      - GNEWS_API_KEY=${GNEWS_API_KEY}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    ports:
+      - 7156:7156
+    network_mode: host
+
