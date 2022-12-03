@@ -1,2 +1,0 @@
-docker build -t lr .
-docker run -d --network host -e "ASPNETCORE_ENVIRONMENT=Production" -e "ASPNETCORE_URLS=http://+:80" -e "GNEWS_API_KEY=26e7c4947d7007c86e51508719434d30" -e "BACKEND_DEV_URL=http://localhost:7156" --name lr lr:latest
