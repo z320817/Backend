@@ -1,25 +1,26 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("NewsServicePolicy",
+        policy =>
+        {
+            var origin = Environment.GetEnvironmentVariable("FRONTEND_DEV_URL") ?? "";
+            policy.WithOrigins(origin)
+            .WithMethods("PUT", "DELETE", "GET", "POST");
+        });
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseCors();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run(Environment.GetEnvironmentVariable("BACKEND_DEV_URL"));
